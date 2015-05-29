@@ -1,0 +1,9 @@
+.customer-signin.panel
+	.header
+		.title Customer Sign In
+	.body    
+		input.fill(ng-model="login.username" placeholder="Username")
+		.space
+		input.fill(ng-model="login.password" placeholder="Password")
+		.button.hover(ng-click="onSignIn()") Sign In
+		.button.hover(ng-click="onSignInCancel()") Cancel

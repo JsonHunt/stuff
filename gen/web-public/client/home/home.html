@@ -1,47 +1,66 @@
 
-<div class="section header middle">This is a section header</div>
-<form class="middle panel">
-  <div class="header">This is a form inside of a panel</div>
-  <div class="body">
-    <div class="form-group">
-      <label>Text</label>
-      <input type="text" ng-model="kkjh" class="form-control"/>
-      <div class="form-group">
-        <label>Text</label>
-        <input type="textarea" ng-model="ghjjhg" class="form-control"/>
+<div class="row fill">
+  <div class="menu panel fill">
+    <div class="header">
+      <div class="title">Menu			</div>
+    </div>
+    <div class="body">
+      <div ng-repeat="cat in categories track by $index" class="category column">
+        <div class="row">
+          <div class="category-title center-v fill">{{cat.name}}</div>
+        </div>
+        <div class="space-lg"></div>
+        <div class="products row">
+          <div ng-repeat="pID in cat.products track by $index" ng-click="selectProduct(cat.id, pID)" class="product rel"><img ng-src="{{menu.products[pID].thumbnailURL}}" class="thumbnail"/>
+            <div class="column">
+              <div class="title fill">{{menu.products[pID].name}}
+                <div ng-if="menu.products[pID].price" class="price">${{menu.products[pID].price}}						</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" ng-model="dupa"/>
-        <text>Something</text>
-      </label>
+  </div>
+  <div class="space"></div>
+  <div class="order panel w300">
+    <div class="header">
+      <div class="title">Your order</div>
     </div>
-    <div class="radio">
-      <label>
-        <input type="radio" ng-model="asdasd"/>
-        <text>Haha</text>
-      </label>
+    <div class="body">
+      <div ng-repeat="item in order.items" ng-click="removeItem(item,$index)" ng-mouseout="remove=undefined" ng-mouseover="remove=item" class="order-item column rel">
+        <div class="row"><i ng-show="remove == item" class="fa fa-times remove-product"></i>
+          <div class="product-name fill">{{item.name}}</div>
+          <div ng-if="item.quantity" class="quantity">x{{item.quantity}}</div>
+          <div class="space-lg"></div>
+          <div class="price">${{item.price | number : 2}}</div>
+        </div>
+        <div class="options column">
+          <div ng-repeat="(key,value) in item.options" class="option"> 
+            <div class="option-name">{{menu.options[key].name}}:</div>
+            <div ng-if="menu.options[key].type == 'single'" class="choice-name">{{menu.choices[value].name}}</div>
+            <div ng-if="menu.options[key].type == 'multi'" ng-repeat="mch in value" class="multi-choice-name">{{menu.choices[mch].name}}</div>
+          </div>
+        </div>
+        <div class="separator"></div>
+      </div>
+      <div ng-if="order.taxes &amp;&amp; order.items.length &gt; 0" class="tax-column column">
+        <div ng-repeat="tax in order.taxes" class="tax row">
+          <div class="fill">{{tax.name}}</div>
+          <div class="price">${{tax.amount | number: 2}}</div>
+        </div>
+      </div>
+      <div ng-if="order.items.length &gt; 0" class="total-column column">
+        <div class="total row">
+          <div class="fill">TOTAL:</div>
+          <div class="price">${{order.grandTotal | number : 2}}</div>
+        </div>
+        <div ng-click="placeOrder()" class="place-order-button">Place Order</div>
+      </div>
+      <div ng-if="order.items.length == 0" class="empty"> 
+        <div>Your cart is empty </div>
+        <div>Select an item from the menu</div>
+      </div>
     </div>
   </div>
-  <div class="footer">
-    <button class="btn btn-primary">Submit</button>
-  </div>
-</form>
-<table class="middle">
-  <tr>
-    <th>Dupa</th>
-    <th>uasdasd</th>
-    <th>asdasd</th>
-  </tr>
-  <tr>
-    <td>Dupa</td>
-    <td>uasdasd</td>
-    <td>asdasd</td>
-  </tr>
-  <tr>
-    <td>Dupa</td>
-    <td>uasdasd</td>
-    <td>asdasd</td>
-  </tr>
-</table>
+</div>

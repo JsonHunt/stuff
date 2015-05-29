@@ -1,0 +1,10 @@
+h2 Create account
+.form
+	.column
+		input(ng-model="customer.login" placeholder="Username")
+		.space
+		input(ng-model="customer.password" placeholder="Password")
+		.space
+		input(ng-model="customer.email" placeholder="Email")
+		.space
+		.button(ng-click="continue()") Continue

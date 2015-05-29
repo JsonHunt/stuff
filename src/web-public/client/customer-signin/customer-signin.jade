@@ -1,0 +1,11 @@
+.customer-signin.panel
+	.header
+		.title Customer Sign In
+	.body.column  
+		input.username.pad.rounded.fill(ng-model="login.username" placeholder="Username")
+		.space
+		input.pad.rounded.fill(ng-model="login.password" placeholder="Password")
+		.space
+		.button.hover(ng-click="onSignIn()") Sign In
+		.space
+		.button.hover(ng-click="onSignInCancel()") Cancel

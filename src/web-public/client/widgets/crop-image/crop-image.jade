@@ -1,0 +1,9 @@
+.column.center
+	.description.column.center
+		div Drag the image around to adjust visible area.
+		div Use the mouse wheel to zoom in and out
+	.space-lg
+	.crop-image
+		img(ng-src="graphic/{{cropImage}}")
+	.space
+	.button.fill(ng-click="save()") OK

@@ -1,0 +1,6 @@
+h2 How would you like to pay for your order?
+div(ng-repeat="m in paymentMethods")
+	.button.hover( ng-click="onMethod(m)") 
+		span {{m.name}} 
+		span(ng-if="m.fee") (fee: ${{m.fee}})
+	.space

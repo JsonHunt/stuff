@@ -1,0 +1,11 @@
+.table-directive.panel
+	.header
+		.title {{config.title}}
+		i.fa.fa-plus(ng-if="config.add" ng-click="config.add()")
+	.table
+		.header
+			.col(ng-repeat="col in config.columns") {{col.label}}
+		.row.hover(ng-repeat="item in data" ng-init="rowIndex = $index")
+			.col.fill(ng-repeat="key in config.columns" ng-init="colIndex = $index" ng-click="select(item)") 
+				.fill.pad {{config.getValue(item,key)}}
+			i.fa.fa-trash(ng-if="config.remove" ng-click="config.remove(item)")

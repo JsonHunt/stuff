@@ -1,0 +1,42 @@
+.order-product.panel
+	.header
+		.title {{product.name}}
+		
+	.options.column(ng-repeat="opt in options track by $index" ng-init="optIndex = $index")
+		.option.column
+			.option-name {{opt.name}}
+				
+			//- .choices.column
+			//- 	.hover(ng-repeat="choiceID in opt.choices track by $index" ng-init="choiceIndex = $index")
+			//- 		label.choice.fill(ng-click="onChoice(choiceID,opt,optIndex)")
+			//- 			.row
+			//- 				input(
+			//- 					type="radio"	
+			//- 					value="{{choiceID}}"
+			//- 					name="{{opt.name}}"	
+			//- 				) 
+			//- 				.space-lg
+			//- 				.fill {{menu.choices[choiceID].name}}
+			//- 				.price(ng-if="menu.choices[choiceID].price") ${{menu.choices[choiceID].price}}
+			
+			.choices2.row.rel
+				.column.choice(
+					ng-repeat="choiceID in opt.choices"
+					ng-init="chActive = isActive(opt.id,choiceID)"
+					ng-click="onChoice(choiceID,opt,optIndex)"
+					ng-class="{active: isActive(opt,choiceID)}"
+				)
+					i.fa.fa-check.active-icon(ng-if="isActive(opt,choiceID)")
+					img.choice-image(
+						ng-if="menu.choices[choiceID].imageURL"
+						ng-src="{{menu.choices[choiceID].imageURL}}"				
+					)
+					.choice-name {{menu.choices[choiceID].name}}
+					.choice-price(ng-if="menu.choices[choiceID].price") ${{menu.choices[choiceID].price}}
+		.separator
+	.footer
+		.quantity.row.fill.center-v
+			.fill Quantity:   {{item.quantity}}
+			i.fa.fa-minus.hover(ng-click="less()")
+			i.fa.fa-plus.hover(ng-click="more()")
+		.button.hover(ng-click="confirm()" ng-class="{disabled: !ready}") Confirm

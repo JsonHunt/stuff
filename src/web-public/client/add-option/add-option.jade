@@ -1,0 +1,10 @@
+.add-option.panel
+	.header
+		.title Select an option
+		i.fa.fa-plus(ng-click="newOption()")
+	.options.list
+		.option.item.hover(
+			ng-repeat="o in options"
+			ng-click="selectOption(o)"
+		)
+			.title {{o.name}}

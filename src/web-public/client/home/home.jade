@@ -1,43 +1,61 @@
-div.section.header.middle This is a section header
-form.middle.panel
-	.header This is a form inside of a panel
-	.body
-		div.form-group
-			label Text
-			input.form-control(
-				type='text'
-				ng-model="kkjh"
+.row.fill
+	.menu.panel.fill
+		.header
+			.title Menu			
+		.body
+			.category.column(ng-repeat="cat in categories track by $index")
+				.row
+					.category-title.center-v.fill {{cat.name}}
+					//- .category-text {{cat.text}}					
+				.space-lg
+				.products.row
+					.product.rel(ng-repeat="pID in cat.products track by $index" ng-click="selectProduct(cat.id, pID)")
+						img.thumbnail(ng-src="{{menu.products[pID].thumbnailURL}}")
+						.column
+							.title.fill {{menu.products[pID].name}}
+								.price(ng-if="menu.products[pID].price") ${{menu.products[pID].price}}						
+	.space
+	.order.panel.w300
+		.header
+			.title Your order
+		.body
+			.order-item.column.rel(
+				ng-repeat="item in order.items" 
+				ng-click="removeItem(item,$index)" 
+				ng-mouseout="remove=undefined" 
+				ng-mouseover="remove=item"
 			)
-			div.form-group
-				label Text
-				input.form-control(
-					type='textarea'
-					ng-model="ghjjhg"
-				)
-						
-		.checkbox
-			label
-				input(type="checkbox", ng-model="dupa")
-				text Something
-		.radio
-			label
-				input(type="radio", ng-model="asdasd")
-				text Haha
-	.footer
-		button.btn.btn-primary Submit
-		
-table.middle
-	tr
-		th Dupa
-		th uasdasd
-		th asdasd
-	tr
-		td Dupa
-		td uasdasd
-		td asdasd
-	tr
-		td Dupa
-		td uasdasd
-		td asdasd
-			
-			
+				.row
+					i.fa.fa-times.remove-product(ng-show="remove == item")
+					.product-name.fill {{item.name}}
+					.quantity(ng-if="item.quantity") x{{item.quantity}}
+					.space-lg
+					.price ${{item.price | number : 2}}
+				.options.column
+					.option(ng-repeat="(key,value) in item.options") 
+						.option-name {{menu.options[key].name}}:
+						.choice-name(ng-if="menu.options[key].type == 'single'") {{menu.choices[value].name}}
+						.multi-choice-name(
+							ng-if="menu.options[key].type == 'multi'"
+							ng-repeat="mch in value"
+						) {{menu.choices[mch].name}}
+				.separator
+			.tax-column.column(ng-if="order.taxes && order.items.length > 0")
+				.tax.row(ng-repeat="tax in order.taxes")
+					.fill {{tax.name}}
+					.price ${{tax.amount | number: 2}}
+			.total-column.column(ng-if="order.items.length > 0")
+				.total.row
+					.fill TOTAL:
+					.price ${{order.grandTotal | number : 2}}
+				.place-order-button(ng-click="placeOrder()") Place Order
+			.empty(ng-if="order.items.length == 0") 
+				div Your cart is empty 
+				div Select an item from the menu
+				
+
+
+	
+	
+	
+	

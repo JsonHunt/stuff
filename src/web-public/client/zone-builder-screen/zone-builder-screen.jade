@@ -1,0 +1,14 @@
+.zone-builder-screen.panel
+	.header
+		.title Delivery Zones
+		i.fa.fa-plus(ng-click="addZone()")
+	.body
+		.row
+			.zones.list
+				.item(ng-repeat="zone in zones" ng-click="selectZone(zone)")
+					.title {{zone.name}}
+			.space-lg
+			#mapCanvas
+				
+		
+		

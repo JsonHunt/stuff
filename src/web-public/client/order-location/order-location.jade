@@ -1,0 +1,24 @@
+h2 Address and Contact				
+.form
+	.row
+		input.fill(ng-model="customer.name" placeholder="Customer Name")
+		.space
+		input.fill(ng-model="customer.phone" placeholder="Phone Number")
+	.space
+	.row
+		input.fill(ng-model="customer.city" placeholder="City")
+		.space
+		input.fill(ng-model="customer.zipcode" placeholder="Postal Code")
+	.space
+	.row
+		input.fill(ng-model="customer.streetNumber" placeholder="Street Number")
+		.space
+		input.fill(ng-model="customer.streetName" placeholder="Street Name")
+	.space
+	.row
+		input.fill(ng-model="customer.room" placeholder="Suite / Room / Office Number")
+		.space
+		input.fill(ng-model="customer.buzzer" placeholder="Buzzer, Building Name, Institution, etc.")
+
+.space
+.button.hover(ng-click="continue()") Continue

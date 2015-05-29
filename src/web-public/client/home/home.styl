@@ -1,0 +1,104 @@
+.menu
+	.category
+		margin-bottom 10px
+		.category-title
+			font-weight bold
+		.category-text
+			font-weight bold
+			white-space: pre
+		.product
+			display inline-block
+			margin-right 2px
+			border 1px solid $light
+			text-align center
+			max-width 200px
+			.thumbnail
+				height 90px
+				margin 0
+				padding 0
+			.title
+				border-top 1px solid $light
+				padding 10px
+.order
+	.product-name
+		font-weight: bold
+		padding-bottom: 5px
+	.option
+		// font-size: smaller
+		padding-left: 5px
+		// padding-bottom: 5px
+	.price
+		width 70px
+		text-align right
+		overflow hidden
+
+	.total
+		margin 10px 0
+		font-weight bold
+
+	.empty
+		text-align center
+		padding 20px
+		font-weight bold
+		font-size 20px
+		color #AAA
+		&.ng-enter
+			transition 1s linear all
+			transition-delay 1s
+			opacity 0
+		&.ng-enter.ng-enter-active
+			opacity 1
+
+	.remove-product
+		position absolute
+		bottom 10px
+		right 0
+		color black
+
+	.place-order-button
+		background-color #30851f
+		color white
+		text-align center
+		padding 15px
+		border-radius 4px
+		margin-top 10px
+		cursor pointer
+		&:hover
+			background-color #31ab13
+
+	.total-column
+		&.ng-enter
+			transition 0.5s linear all
+			opacity 0
+			&.ng-enter-active
+				opacity 1
+		&.ng-leave
+			transition 0.5s linear all
+			opacity 1
+			&.ng-leave-active
+				opacity 0
+
+	.order-item
+		&.ng-enter
+			transition: max-height 0.5s ease-out, opacity 0.5s linear
+			max-height: 0
+			opacity 0
+			&.ng-enter-active
+				max-height: 150px
+				opacity 1
+
+		&.ng-leave
+			transition: max-height 0.5s ease-in, opacity 0.5s linear
+			opacity 1
+			max-height: 150px
+			&.ng-leave-active
+				opacity 0
+				max-height: 0px
+
+		.option-name
+			display inline
+		.choice-name
+			margin-left 10px
+			display inline
+		.multi-choice-name
+			margin-left 10px

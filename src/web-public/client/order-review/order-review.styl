@@ -1,0 +1,36 @@
+.order-review
+	.product-name
+		font-weight: bold
+		padding-bottom: 5px
+	.option
+		font-size: smaller
+		padding-left: 5px
+	.price
+		width 70px
+		text-align right
+		overflow hidden
+
+	.total
+		margin 10px 0
+		font-weight bold
+
+	.total-column
+		&.ng-enter
+			transition 0.5s linear all
+			opacity 0
+			&.ng-enter-active
+				opacity 1
+		&.ng-leave
+			transition 0.5s linear all
+			opacity 1
+			&.ng-leave-active
+				opacity 0
+
+	.order-item
+		.option-name
+			display inline
+		.choice-name
+			margin-left 10px
+			display inline
+		.multi-choice-name
+			margin-left 10px

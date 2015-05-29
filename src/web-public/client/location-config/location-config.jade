@@ -1,0 +1,17 @@
+.location-config(ng-switch="screen")
+	table.locations(config = 'locationsConfig', data='locations')
+	
+	//- .locations.panel(ng-switch-when="locations")
+	//- 	.header 
+	//- 		.title Locations
+	//- 		i.fa.fa-plus(ng-click="addLocation()")
+	//- 	.table
+	//- 		.row(ng-repeat="loc in locations")
+	//- 			.col.fill.pad.hover(ng-click="selectLocation(loc)") {{loc.name}}
+	//- 			i.fa.fa-trash(ng-click="deleteLocation(loc)")
+		
+	.location.panel(ng-switch-when="location")
+		.header Location
+		i.fa.fa-plus()
+
+	

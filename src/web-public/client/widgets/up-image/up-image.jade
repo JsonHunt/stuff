@@ -1,0 +1,5 @@
+img.up-image(class="{{config.class}}" ng-show="image" ng-src="graphic/{{image}}" ng-click='onClick()')
+div.column.center(class="{{config.class}}" ng-hide="image" ng-click='onClick()')
+	.prompt SELECT IMAGE
+	//- i.fa.fa-image.up-image.placeholder
+input.up-image-input(type="file" nv-file-select='' uploader="uploader" ng-hide="{{true}}")

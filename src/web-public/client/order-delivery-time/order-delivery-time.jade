@@ -1,0 +1,12 @@
+h2 When would you like to get your order?
+.button.hover(ng-click="now()") Now
+.space
+.button.hover(ng-click="order.when = 'scheduled'") Set date and time
+.space
+.scheduled-time.panel.column(ng-if="order.when == 'scheduled'")
+	.body
+		input.fill(ng-model="order.date" placeholder="Date (YYYY-MM-DD)")
+		.space
+		input.fill(ng-model="order.time" placeholder="Time (HH:MM)")
+		.space
+		.button.hover(ng-click="continue()") Continue

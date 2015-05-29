@@ -1,0 +1,67 @@
+.order-product
+	.quantity
+		font-size 20px
+		.fa-plus, .fa-minus
+			width	40px
+			height 40px
+			border 1px solid $light
+			border-radius 4px
+			margin 2px
+
+	.options
+		.option
+			.option-name
+				padding 10px
+				font-size 20px
+
+			.chosen
+				padding: 5px 10px;
+				color: #fff;
+				font-weight: bold;
+
+			.change
+				color: #fff
+			.choices2
+				.choice
+					display: inline-block;
+					border: 1px solid #aaa;
+					margin-left: 5px;
+					text-align: center;
+					background-color white
+					z-index 1
+					transition transform 0.2s
+					.active-icon
+						position absolute
+						top 5px
+						right 5px
+						color green
+					.choice-image
+						height 80px
+						padding 5px
+						border-bottom 1px solid #aaa
+					.choice-name
+						font-weight bold
+						padding 5px
+						border-bottom 1px solid #aaa
+					&:hover
+						border 1px solid $dark
+					&.active
+						border 1px solid $dark
+						transform scale(1.1)
+						z-index 100
+					.choice-price
+						padding 5px
+
+			.choices
+				.choice
+					padding 10px
+				&.ng-enter
+					transition max-height 1s
+					max-height 0
+					&.ng-enter-active
+						max-height 1000px
+				&.ng-leave
+					transition max-height 1s
+					max-height 1000px
+					&.ng-leave-active
+						max-height 0

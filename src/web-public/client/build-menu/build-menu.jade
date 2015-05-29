@@ -1,0 +1,110 @@
+.build-menu.fill(ng-switch="screen")
+	
+	//- cropimage(
+	//- 	width='300'
+	//- 	height='200'
+	//- 	imageurl='graphic/e97633e3b046101133928cea0a6ecdd8.jpg'
+	//- )
+	
+	.categories.fill(ng-switch-when="categories")
+		xtable.fill(
+			config="categoriesTableConfig"
+			data="categories"			
+		)
+		.space-lg
+		//- .panel.fill
+		//- 	.header
+		//- 		.title Categories
+		//- 		i.fa.fa-plus(ng-click="newCategory()")
+		//- 	.table.fill.categories
+		//- 		.category.row.hover(
+		//- 			ng-repeat="cat in categories"
+		//- 			ng-click="selectCategory(cat)"
+		//- 		)
+		//- 			.col.fill.pad.name.title {{cat.name}}					
+		//- 			.col: i.fa.fa-trash(ng-click="deleteCategory(cat)")
+	
+	.category.column.fill(ng-switch-when="category")
+		.info.panel
+			.header
+				i.fa.fa-chevron-left(ng-click="backToCategories()")
+				.title Category Info
+			.body
+				.form
+					.row
+						.label.w100 Name
+						input.fill(ng-model="category.name")
+					.space
+					.row
+						.label.w100 Description
+						textarea.fill(ng-model="category.description")
+			
+		.space-lg
+		.options.panel
+			xtable.fill(
+				config="categoryOptionsTableConfig"
+				data="options"			
+			)
+			//- .options.table
+			//- 	.option.row.hover(
+			//- 		ng-repeat="oID in category.options"
+			//- 		ng-init="o = menu.options[oID]"					
+			//- 	)
+			//- 		.title.col.pad.fill(ng-click="selectOption(o)") {{o.name}}
+			//- 		.col: i.remove-icon.hover.fa.fa-times(ng-click="removeOption(category, o)")
+
+		.space-lg
+		.products.panel.fill
+			xtable.fill(
+				config="productsTableConfig"
+				data="products"			
+			)
+			//- .products.table
+			//- 	.product.row.hover(
+			//- 		ng-repeat="pID in category.products track by $index" 
+			//- 		ng-init="p = menu.products[pID]"				
+			//- 	)
+			//- 		.title.col.fill.pad(ng-click="selectProduct(p)") {{p.name}}
+			//- 		.price.col.w100.pad(ng-if="p.price") ${{p.price}}
+			//- 		i.fa.fa-trash(ng-click="removeProduct(p)")
+						
+	.product.fill(ng-switch-when="product")
+		.panel.fill
+			.header
+				i.fa.fa-chevron-left(ng-click="backToCategory()")
+				.title Product Info
+			.body
+				.form
+					.row
+						upimage(config='productImageConfig')
+						.column.fill
+							input(ng-model="product.name" placeholder="Item Name")
+							.space
+							input(ng-model="product.price" placeholder="Price")
+							.space
+							textarea.fill(ng-model="product.description" placeholder="Description")
+							.space
+							.save.button(ng-click="saveProduct()") Save
+		
+		.space-lg
+		.options.panel
+			.header
+				.title Options
+				i.fa.fa-plus(ng-click="addOption(product)")
+			.options.table
+				.no-options.pad.center(ng-if="product.options.length == 0") No options defined for this product. It will inherit options from it's category.
+				.option.row.hover(
+					ng-repeat="oID in product.options"
+					ng-init="o = menu.options[oID]"					
+				)
+					.title.col.pad.fill(ng-click="selectOption(o)") {{o.name}}
+					.col: i.remove-icon.hover.fa.fa-times(ng-click="removeOption(product,o)")
+				
+				
+	
+
+
+	
+	
+	
+	

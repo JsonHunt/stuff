@@ -1,0 +1,29 @@
+input, select
+	padding 5px
+	border 1px solid $light
+	box-sizing: border-box
+
+select.full
+	flex: 1
+	align-self: stretch
+
+select
+	border 1px solid $light
+
+.form
+	@extends .column
+	.row
+		.label
+			@extends .center-v
+			padding 5px
+	.column
+		margin-bottom 10px
+		.label
+			@extends .center-v
+			padding-bottom 2px
+
+label.file-upload
+	color white
+	input
+		position: fixed;
+		top: -1000px;

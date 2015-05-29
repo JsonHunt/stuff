@@ -1,0 +1,90 @@
+.pac-container
+	z-index 10000
+.place-order
+	#deliveryLocation
+		width 250px
+	#mapCanvas
+		height 200px
+	.prev-part
+		background-color $light
+		color	white
+		border-radius 100px
+		position absolute
+		left 15px
+		top 15px
+	.content
+		position: relative
+		overflow hidden
+		height 300px
+	.part
+		height 300px
+		padding 0 15px 15px 15px
+		position absolute
+		left 0
+		top 0
+		width 100%
+		text-align center
+		&.ng-enter
+			transition: transform 0.5s ease-out
+			transform: translate(100%,0)
+			&.ng-enter-active
+				transform: translate(0, 0)
+		&.ng-leave
+			transition: transform 0.5s ease-out
+			transform: translate(0, 0)
+			&.ng-leave-active
+				transform: translate(-100%,0)
+
+		.delivery-time-header
+			position: relative;
+			left: 10px;
+
+		.select-time.form
+			border 1px solid $light
+			padding 10px
+			&.ng-enter
+				transition: 0.5s ease-out
+				max-height 0
+				opacity 0
+				&.ng-enter-active
+					max-height 150px
+					opacity 1
+			&.ng-leave
+				transition: 0.5s ease-out
+				max-height 150px
+				opacity 1
+				&.ng-leave-active
+					max-height 0
+					opacity 0
+
+	.content.back
+		.part
+			&.ng-enter
+				transform: translate(-100%,0)
+				&.ng-enter-active
+					transform: translate(0, 0)
+			&.ng-leave
+				transform: translate(0, 0)
+				&.ng-leave-active
+					transform: translate(100%,0)
+
+.signin-form
+	border 1px solid $light
+	padding 10px
+	margin 10px
+
+.modal .modal-dialog[oc-modal=customer-signin]
+	.modal-content
+		width 300px
+
+.account-options, .signin
+	&.ng-enter
+		transition opacity 0.3s linear 0.5s
+		opacity 0
+		&.ng-enter-active
+			opacity 1
+	&.ng-leave
+		transition opacity 0.3s linear 0s
+		opacity 1
+		&.ng-leave-active
+			opacity 0

@@ -1,0 +1,58 @@
+.edit-option.panel
+	.header
+		.title Category Option
+	.body
+		.form
+			input.option-name.full(ng-model="option.name" placeholder="Option Name")
+			.space
+			select.type(ng-model="option.type")
+				option(value='single') Single choice
+				option(value='multi') Multiple choice
+			.space
+			select.required(ng-model="option.required")
+				option(value='true') Required
+				option(value='false') Optional
+		
+		.space-lg
+		.bar
+			.title Choices
+			i.fa.fa-plus(ng-click="addChoice()")
+		.choice.table.border.pad
+			.no-choices.row(ng-if="option.choices.length == 0")
+				.col Click '+' icon to add choices
+			.choice.column(ng-repeat="choiceID in option.choices" ng-init="choice = menu.choices[choiceID]")
+				.space
+				.column.fill
+					.choice.row.rel
+						//- a.choice-image-a(
+						//- 	href="#" 
+						//- 	tooltips="" 
+						//- 	tooltip-side="left" 
+						//- 	tooltip-content="<img class='choice-image' src='{{choice.imageURL}}'>"
+						//- )
+						img.choice-image-zoom(ng-show="choice.imageURL && zoom" ng-src="graphic/{{choice.imageURL}}")
+						div(ng-mouseover="zoom = true" ng-mouseout="zoom = false")
+							upimage(config='choiceImageConfig' arg='choice')
+						//- 	img.choice-image-icon(ng-show="choice.imageURL && !zoom" ng-src="{{choice.imageURL}}" )
+						//- 	i.fa.fa-upload.choice-image-icon(ng-show="!choice.imageURL || zoom")
+						//- input(id="upload_{{choiceID}}" type="file" nv-file-select='' uploader="uploader" ng-hide="{{true}}")
+						input.name.fill(ng-model="choice.name" placeholder="Choice name")
+						.space
+						input.price.w100(ng-model="choice.price" placeholder="Price")
+						.row.center(ng-if="option.type == 'multi'")
+							.space
+							input(type="checkbox" ng-model="choice.default")
+						.space
+						i.fa.fa-trash(ng-click="removeChoice(choice)")
+		.space
+		.single-default.row.fill.center-v(ng-if="option.type == 'single' && option.choices.length > 0")
+			.label Preselected choice:
+			select.default-choice.fill(ng-model="option.defaultChoice")
+				option None
+				option(ng-repeat="ch in option.choices" value="{{ch}}" ng-selected="option.defaultChoice == ch") {{menu.choices[ch].name}}
+				
+
+.space
+.save.button(ng-click="save()") Save
+			
+		

@@ -1,0 +1,85 @@
+.place-order.panel
+	.header
+		.title Your Order		
+	.content.column.fill(ng-switch="part")
+		.part.part0(ng-switch-when="0")
+			h2 Do you have an account with us?				
+			.button.fill.hover.center(ng-click="signIn()") Sign In
+			.space
+			.button.fill.hover.center(ng-click="nextPart()") Continue without account
+		
+		.part.part1(ng-switch-when="1")
+			i.fa.fa-chevron-left.prev-part(ng-click="prevPart()")
+			h2 This order is for:				
+			.button.fill.hover.center(ng-click="selectDelivery('pickup')") Pickup
+			.space
+			.button.fill.hover.center(ng-click="selectDelivery('delivery')") Delivery
+		.part.column.part2(ng-switch-when="2")
+			i.fa.fa-chevron-left.prev-part(ng-click="prevPart()")
+			h2 Address and Contact				
+			.form
+				.row
+					input.fill(ng-model="order.contact.name" placeholder="Customer Name")
+					.space
+					input.fill(ng-model="order.contact.phone" placeholder="Phone Number")
+				.space
+				.row
+					input.fill(ng-model="order.address.city" placeholder="City")
+					.space
+					input.fill(ng-model="order.address.zipcode" placeholder="Postal Code")
+				.space
+				.row
+					input.fill(ng-model="order.address.streetNumber" placeholder="Street Number")
+					.space
+					input.fill(ng-model="order.address.streetName" placeholder="Street Name")
+				.space
+				.row
+					input.fill(ng-model="order.address.room" placeholder="Suite / Room / Office Number")
+					.space
+					input.fill(ng-model="order.address.buzzer" placeholder="Buzzer, Building Name, Institution, etc.")
+		
+			.space
+			.button.hover(ng-click="nextPart()") Continue
+				
+		.part.part3(ng-switch-when="3")
+			i.fa.fa-chevron-left.prev-part(ng-click="prevPart()")
+			h2(ng-show="order.delivery == 'pickup'") When would you like to pick up your order?
+			h2.delivery-time-header(ng-show="order.delivery == 'delivery'") When would you like to have your order delivered?
+			.button.fill.hover.center(ng-click="selectTime('asap')") Now
+			.space
+			.button.fill.hover.center(ng-click="selectTime('time')") Select date and time
+			
+			.space
+			.select-time.form(ng-if="order.when == 'time'")
+				.row
+					input.time(ng-model="order.time" placeholder="Time (hh:mm)")
+					.space
+					input.date(ng-model="order.date")
+					.space
+					i.fa.fa-calendar
+				.space
+				.button.hover(ng-click="nextPart()") Continue
+			
+		.part.part4(ng-switch-when="4")
+			i.fa.fa-chevron-left.prev-part(ng-click="prevPart()")
+			h2.delivery-time-header Would you like to save delivery address<br>and your contact information for future orders?
+			
+			.button.hover(ng-click="createAccount()") Yes
+			.space
+			.button.hover(ng-click="review()") Not this time
+		
+			
+	//- .separator
+	//- div When would you like to pick up your order?
+	//- .list
+	//- 	.item.hover(ng-click="order.time = 'now'")
+	//- 		i.fa.fa-check-square-o(ng-show="order.time == 'now'")
+	//- 		i.fa.fa-square-o(ng-hide="order.time == 'now'")
+	//- 		.title Now
+	//- 	.item.hover(ng-click="order.time = 'schedule'")
+	//- 		i.fa.fa-check-square-o(ng-show="order.time == 'schedule'")
+	//- 		i.fa.fa-square-o(ng-hide="order.time == 'schedule'")
+	//- 		.title At a specific date and time
+		
+		
+	

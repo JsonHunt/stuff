@@ -1,0 +1,50 @@
+h2 Order Review
+.row
+	.order-review.panel.w300
+		.body
+			.order-item.column.rel(
+				ng-repeat="item in order.items"
+			)
+				.row
+					i.fa.fa-times.remove-product(ng-show="remove == item")
+					.product-name.fill {{item.name}}
+					.quantity(ng-if="item.quantity") x{{item.quantity}}
+					.space-lg
+					.price ${{item.price | number : 2}}
+				.options.column
+					.option(ng-repeat="(key,value) in item.options") 
+						.option-name {{menu.options[key].name}}:
+						.choice-name(ng-if="menu.options[key].type == 'single'") {{menu.choices[value].name}}
+						.multi-choice-name(
+							ng-if="menu.options[key].type == 'multi'"
+							ng-repeat="mch in value"
+						) {{menu.choices[mch].name}}
+				.separator
+			.tax-column.column(ng-if="order.taxes && order.items.length > 0")
+				.tax.row(ng-repeat="tax in order.taxes")
+					.fill {{tax.name}}
+					.price ${{tax.amount | number: 2}}
+			.total-column.column(ng-if="order.items.length > 0")
+				.total.row.center-v
+					.total.fill GRAND TOTAL:
+					.price ${{order.grandTotal | number : 2}}
+	.space
+	.panel.w300
+		.body
+			div Order for {{order.how}}
+			div(ng-if="order.when == 'scheduled'") on {{order.date}} at {{order.time}}
+			.space
+			div Contact Information
+			div {{customer.name}}
+			div {{customer.phone}}
+			.space
+			div Address
+			div {{customer.room}} / {{customer.streetNumber}} {{customer.streetName}} 
+			div {{customer.zipCode}} {{customer.city}}
+			div 
+			.space
+			div Buzzer/Building Name/Institution: 
+			div {{customer.buzzer}}
+.space
+.button.hover(ng-click="confirm()") Confirm
+		
