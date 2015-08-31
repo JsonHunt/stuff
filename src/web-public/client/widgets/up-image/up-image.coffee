@@ -1,3 +1,6 @@
+# FILE UPLOADER REPOSITORY: https://github.com/nervgh/angular-file-upload
+# FILE UPLOADER DOCUMENTATION: https://github.com/nervgh/angular-file-upload/wiki/Module-API
+
 module.exports = ['FileUploader','$timeout','ngDialog', (FileUploader,$timeout,ngDialog) ->
 	restrict : 'E'
 	scope:
@@ -14,7 +17,8 @@ module.exports = ['FileUploader','$timeout','ngDialog', (FileUploader,$timeout,n
 		# } ]
 		$scope.image = $scope.config.getImage($scope.arg)
 
-		uploader.onAfterAddingFile = (event, item) ->
+		uploader.onAfterAddingFile = (item) ->
+			console.log item
 			$scope.uploader.uploadAll()
 
 		uploader.onSuccessItem = (item,response,status,headers) ->

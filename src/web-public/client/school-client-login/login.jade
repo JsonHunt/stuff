@@ -1,0 +1,22 @@
+.panel(style="height: 100%")
+	.header
+		.title Customer Login
+	.body
+		.form
+			.row
+				.col.w100 Username:
+				.col: input(ng-model="username")
+			.space
+			.row
+				.col.w100 Password:
+				.col: input(type='password', ng-model="password")
+			.space
+			.row
+				.col.w100
+				.col: .button(ng-click="signIn()") SIGN IN
+	
+		.space-lg
+		div 
+			span Don't have an account with us?
+			.space
+			a(href="" ng-click="signUp()") Click here to register

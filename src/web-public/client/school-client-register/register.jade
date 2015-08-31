@@ -1,0 +1,38 @@
+.panel(style="height: 100%")
+	.header
+		.title Account Registration
+	.body
+		
+		.row.center-v
+			.col.w200 Full Name:
+			.col: input(ng-model="customer.name")
+				
+		.space
+		.row.center-v
+			.col.w200 Email:
+			.col: input(ng-model="customer.email")
+
+		.space
+		.row.center-v
+			.col.w200 Phone number:
+			.col: input(ng-model="customer.phone")
+				
+		.space
+		.row.center-v
+			.col.w200 Password:
+			.col: input(ng-model="customer.password")
+
+		.space
+		.row.center-v
+			.col.w200 School:
+			.col
+				select.form-control(
+					ng-model="customer.school"
+					ng-options="school.id as school.name for school in schools"
+				)
+				
+		.space
+		.row.center-v
+			.col.w200
+			.col
+				.button(ng-click="register()") Register

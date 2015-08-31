@@ -25,6 +25,7 @@ router.use '/crop', (req,res,next)->
 	fullPath = "graphicFiles\\#{req.body.imageURL}"
 	data = req.body.data
 	gm(fullPath).size (err,value)->
+		console.log err if err
 		gm(fullPath)
 		.scale(value.width * data.scale, value.height * data.scale)
 		.crop(data.w,data.h,data.x,data.y)

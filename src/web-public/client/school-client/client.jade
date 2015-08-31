@@ -1,0 +1,132 @@
+.school-client.fill.column
+	.row
+		.pill(ng-click="showOrder()" ng-class="{active: tab =='order'}") Order
+		.space
+		.pill(ng-click="showAccount()" ng-class="{active: tab == 'account'}") Account
+
+	.space
+	.column.fill(ng-if="tab == 'order'")
+		.row.fill
+			.panel
+				.header
+					.title Menu
+				.body
+					.row.center-v
+						.w200 Student:
+						select.full-width(
+							ng-model="$parent.student"
+							ng-options="student as student.name for student in students track by student.id"
+							ng-change="selectStudent(student)"
+						)
+					.space
+					.row.center-v
+						.w200 Deliver to:
+						select.full-width(
+							ng-model="$parent.room"
+							ng-options="room as room.name for room in rooms"
+							ng-change="selectRoom()"
+						)
+				
+					.space
+					.row.center-v
+						.w200 Order from:
+						select.full-width(
+							ng-model="$parent.menu"
+							ng-options="menu as menu.name for menu in menus track by menu.id"
+							ng-change='selectMenu()'
+						)
+					
+					hr
+					div(ng-repeat="cat in $parent.menu.categories")
+						h3 {{cat.name}}
+						.category-item(ng-repeat="item in cat.items")
+							.space
+							.row.center-v
+								.w300 {{item.name}}
+								.w100 ${{item.price | number: 2}}
+								.quantity {{getQuantity(item)}}
+								.space
+								.less: i.fa.fa-minus(ng-click="less(item)")
+								.space
+								.more: i.fa.fa-plus(ng-click="more(item)")
+			.space
+			.panel.fill
+				.header
+					.title Your Order
+				.body
+					.order-no-items(ng-show="order.total == 0") Your order is empty
+					.col.order-person(ng-repeat="person in order.people")
+						.order-person-name {{person.name}}
+						.row.order-item(ng-repeat="item in person.items")
+							.item-name.fill {{item.name}}
+							.item-quantity x {{item.quantity}}
+							.item-price ${{item.price | number: 2}}
+						
+					.space
+					.row.center-v(ng-show="order.total > 0")
+						.space.fill
+						.total Total: ${{order.total | number: 2}}
+						.space-lg
+						.button(ng-click="placeOrder()") Place order
+			
+		
+	.row.fill(ng-if="tab == 'account'")
+		.panel.fill
+			.header
+				.title Account
+			.body
+				.row.center-v
+					.col.w200 Your Full Name:
+					.col: input(ng-model="customer.name")
+						
+				.space
+				.row.center-v
+					.col.w200 Email:
+					.col: input(ng-model="customer.email")
+
+				.space
+				.row.center-v
+					.col.w200 Phone number:
+					.col: input(ng-model="customer.phone")
+						
+				.space
+				.row.center-v
+					.col.w200 School:
+					.col
+						select.form-control(
+							ng-model="customer.school"
+							ng-options="school.id as school.name for school in schools"
+						)
+						
+				.space-lg
+				
+				a(href="" ng-click='togglePass()') Change password
+				.col(ng-show="changePass")
+					hr
+					.row.center-v
+						.col.w200 New Password:
+						.col: input(ng-model="customer.newPassword")
+					.space
+					.row.center-v
+						.col.w200 Confirm Password:
+						.col: input(ng-model="customer.confirmPassword")
+				.space
+				.row.center-v
+					.fill
+					.saved(ng-if="saved") Saved.
+					.space-lg
+					.button(ng-click="save()") Save Changes
+			
+		.space
+		.panel.fill.students
+			.header
+				.title People I am buying for
+			.table
+				.row.hover.center-v(ng-repeat="person in customer.students")
+					.title.name.fill(ng-click="editPerson(person)") {{person.name}}
+					i.fa.fa-trash(ng-click="removePerson(person)")
+			.body
+				.no-people(ng-if="customer.students.length == 0") There are no people on this list
+				button(ng-click="addPerson()") Add person
+	
+	

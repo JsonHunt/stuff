@@ -26,7 +26,7 @@ sessionStore = new SessionStore
 	port: 3306
 	user: 'root'
 	password: 'garsonka'
-	database: 'webapp'
+	database: 'online_ordering'
 
 app.use(session({
 		key: 'session_cookie_name',
@@ -69,6 +69,7 @@ app.use (req, res, next) ->
 # will print stacktrace
 if app.get('env') == 'development'
 	app.use (err, req, res, next) ->
+		console.log err
 		res.status err.status or 500
 		res.render 'error',
 			message: err.message
@@ -78,6 +79,7 @@ if app.get('env') == 'development'
 # production error handler
 # no stacktraces leaked to user
 app.use (err, req, res, next) ->
+	console.log err
 	res.status err.status or 500
 	res.render 'error',
 		message: err.message

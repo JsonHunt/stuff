@@ -1,0 +1,38 @@
+a(href="" ng-click="back()") Back to account
+.space-lg
+
+.panel.fill.person
+	.header
+		.title Person settings
+	.body
+		.row.center-v
+			.w200 Name:
+			input(ng-model="person.name")
+		.space
+		
+		.row.center-v
+			.w200 Date of birth:
+			input(ng-model="person.dob" placeholder="YYYY-MM-DD")
+		.space
+		
+		.row.center-v
+			.w200 School:
+			select(
+				ng-model="person.school"
+				ng-options="school.id as school.name for school in schools"
+				ng-change="selectSchool()"
+			)
+		.space
+		.row.center-v(ng-if="person.school")
+			.w200 Room:
+			select.form-control(
+				ng-model="person.room"
+				ng-options="room.id as room.name for room in school.rooms"
+			)
+			
+		.space
+		.row.center-v
+			.fill
+			.saved(ng-if="saved") Saved.
+			.space-lg
+			.button(ng-click="save()") Save changes

@@ -26,6 +26,24 @@ ctr = module.exports = ($scope,$location,$ocModal,$http,$rootScope, $sce) ->
 		console.log "Going to #{path}"
 		$location.path(path)
 
+	# $scope.load = (query,callback)->
+	# 	$http.post "/crud/load",
+	# 		query: query
+	# 	.success (data,status,headers,config)-> callback undefined, data
+	# 	.error (data,status,headers,config)-> callback data
+	#
+	# $scope.save = (query,callback)->
+	# 	$http.post "/crud/save",
+	# 		query: query
+	# 	.success (data,status,headers,config)-> callback data
+	# 	.error (data,status,headers,config)-> callback data
+	#
+	# $scope.delete = (query,callback)->
+	# 	$http.post "/crud/delete",
+	# 		query: query
+	# 	.success (data,status,headers,config)-> callback data
+	# 	.error (data,status,headers,config)-> callback data
+
 	$scope.gotoPage = (p)->
 		$scope.page = p
 

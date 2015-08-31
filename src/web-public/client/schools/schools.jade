@@ -1,0 +1,8 @@
+h2 Schools
+
+.table.border
+	.row.pad.hover(ng-repeat="s in schools" ng-click="select(s)") 
+		.col {{s.name}}
+		
+.space
+div: button(ng-click="addSchool()") Add school

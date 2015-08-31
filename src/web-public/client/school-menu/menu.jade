@@ -1,0 +1,34 @@
+.menu
+	a(href="" ng-click="back()") Back
+	.space-lg
+
+	.row
+		input.menu-name.fill(ng-model="menu.name")
+		.space
+		button(ng-click="newCategory()") Add a food category
+		.space
+		button(ng-click="save()") Save changes
+
+	.space-lg
+	.col
+		.no-categories(ng-if="menu.categories.length == 0") This menu has no categories
+		.col.category(ng-if="menu.categories.length > 0" ng-repeat="cat in menu.categories")
+			.row.center-v
+				input.w300(ng-model="cat.name")
+				.space.fill
+				a(href="" ng-click="removeCategory(cat)") Remove this category
+			.space
+			.no-items(ng-if="cat.items.length == 0") This category has no items
+			table.items(ng-if="cat.items.length > 0")
+				tr(ng-repeat="item in cat.items")
+					td: input.w300(ng-model="item.name")
+					td $ 
+						input(ng-model="item.price")
+					td: i.fa.fa-trash(ng-click="removeItem(cat,item)")
+			.space
+			div: button.new-item(ng-click="addItem(cat)") Add Item to this category
+
+.space
+.row
+	.space.fill
+	span.pad(ng-if="saved") Saved.

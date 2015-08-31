@@ -1,0 +1,53 @@
+.school.column.fill
+	.body.column.fill
+		a(href="" ng-click="back()") Back to list of schools
+		.space-lg
+		.row
+			input.school-name.fill(ng-model="school.name")
+			.space
+			button.save(ng-click="save()") Save changes
+		//- .space
+		//- .row.center-v
+		//- 	.label.w200 Menu
+		//- 	select.w300(
+		//- 		ng-model="menu"
+		//- 		ng-options="menu as menu.name for menu in menus"
+		//- 		ng-change="selectMenu(menu)"
+		//- 	)
+		//- 	.space
+		//- 	button(ng-click="newMenu()") Create new menu
+
+		.pillbox
+			.pill(ng-click="openMenus()" ng-class="{active: tab == 'menus'}") Menus
+			.pill(ng-click="openRooms()" ng-class="{active: tab == 'rooms'}") Rooms
+		
+		.column.fill(ng-if="tab == 'menus'")
+			.panel.fill
+				.header
+					.title Menus
+				
+				.row.room.hover.center-v(ng-repeat="menu in school.menus" ng-click="selectMenu(menu)")
+					.name.fill {{menu.name}}
+					i.fa.fa-trash(ng-click="removeMenu(menu)")
+			.space
+			.row: button(ng-click="newMenu()") Create new menu
+					
+		.column.fill(ng-if="tab == 'rooms'")
+			.panel.fill
+				.header
+					.title Rooms
+				.table.rooms.border.fill
+					.row.center-v(ng-repeat="room in school.rooms" ng-click="selectRoom(room)")
+						input(ng-model="room.name")
+						i.fa.fa-trash(ng-click="removeRoom(room)")
+			.space
+			.row: button(ng-click="newRoom()") Add new room
+		
+		
+.space
+.row
+	.space.fill
+	span.pad(ng-if="saved") Saved.
+	
+	
+				

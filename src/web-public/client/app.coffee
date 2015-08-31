@@ -61,6 +61,31 @@ app.config ['$httpProvider','$routeProvider', ($httpProvider,$routeProvider) ->
 	.when '/home',
 		controller : require './home/home'
 		templateUrl : 'home/home.html'
+	.when '/admin',
+		controller : require './school-admin-login/login'
+		templateUrl : 'school-admin-login/login.html'
+	.when '/schools',
+		controller : require './schools/schools'
+		templateUrl : 'schools/schools.html'
+	.when '/school/:id',
+		controller : require './school/school'
+		templateUrl : 'school/school.html'
+	.when '/school/:school/menu/:menu',
+		controller : require './school-menu/menu'
+		templateUrl : 'school-menu/menu.html'
+	.when '/person/:id',
+		controller : require './school-person/person'
+		templateUrl : 'school-person/person.html'
+	.when '/customer-login',
+		controller : require './school-client-login/login'
+		templateUrl : 'school-client-login/login.html'
+	.when '/customer-register',
+		controller : require './school-client-register/register'
+		templateUrl : 'school-client-register/register.html'
+	.when '/customer/:tab?',
+		controller : require './school-client/client'
+		templateUrl : 'school-client/client.html'
+
 	.when '/contact',
 		controller : require './contact/contact'
 		templateUrl : '/contact/contact.html'
